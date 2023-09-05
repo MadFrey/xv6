@@ -1,0 +1,3 @@
+/home/root1/xv6-labs-2020/cmake-build-debug/CMakeFiles/xv6_lab.dir
+/home/root1/xv6-labs-2020/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/root1/xv6-labs-2020/cmake-build-debug/CMakeFiles/rebuild_cache.dir

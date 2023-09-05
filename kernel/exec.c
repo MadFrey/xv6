@@ -56,6 +56,7 @@ exec(char *path, char **argv)
       goto bad;
     if(loadseg(pagetable, ph.vaddr, ip, ph.off, ph.filesz) < 0)
       goto bad;
+
   }
   iunlockput(ip);
   end_op();
@@ -107,6 +108,8 @@ exec(char *path, char **argv)
     if(*s == '/')
       last = s+1;
   safestrcpy(p->name, last, sizeof(p->name));
+  uvmunmap(p->shareTable, 0, PGROUNDUP(oldsz)/PGSIZE, 0);
+  kvmcopymappings(pagetable, p->shareTable, 0, sz);
     
   // Commit to the user image.
   oldpagetable = p->pagetable;

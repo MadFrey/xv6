@@ -47,6 +47,38 @@ kvminit()
   kvmmap(TRAMPOLINE, (uint64)trampoline, PGSIZE, PTE_R | PTE_X);
 }
 
+
+pagetable_t
+shareTable_kvmInit()
+{
+    pagetable_t pagetable = (pagetable_t) kalloc();
+    memset(pagetable, 0, PGSIZE);
+
+    // uart registers
+    shareTable_kvmmap(pagetable,UART0, UART0, PGSIZE, PTE_R | PTE_W);
+
+    // virtio mmio disk interface
+    shareTable_kvmmap(pagetable,VIRTIO0, VIRTIO0, PGSIZE, PTE_R | PTE_W);
+
+    // CLINT
+    shareTable_kvmmap(pagetable,CLINT, CLINT, 0x10000, PTE_R | PTE_W);
+
+    // PLIC
+    shareTable_kvmmap(pagetable,PLIC, PLIC, 0x400000, PTE_R | PTE_W);
+
+    // map kernel text executable and read-only.
+    shareTable_kvmmap(pagetable,KERNBASE, KERNBASE, (uint64)etext-KERNBASE, PTE_R | PTE_X);
+
+    // map kernel data and the physical RAM we'll make use of.
+    shareTable_kvmmap(pagetable,(uint64)etext, (uint64)etext, PHYSTOP-(uint64)etext, PTE_R | PTE_W);
+
+    // map the trampoline for trap entry/exit to
+    // the highest virtual address in the kernel.
+    shareTable_kvmmap(pagetable,TRAMPOLINE, (uint64)trampoline, PGSIZE, PTE_R | PTE_X);
+    return pagetable;
+}
+
+
 // Switch h/w page table register to the kernel's page table,
 // and enable paging.
 void
@@ -54,6 +86,13 @@ kvminithart()
 {
   w_satp(MAKE_SATP(kernel_pagetable));
   sfence_vma();
+}
+
+void
+share_kvminithart(pagetable_t pgt)
+{
+    w_satp(MAKE_SATP(pgt));
+    sfence_vma();
 }
 
 // Return the address of the PTE in page table pagetable
@@ -121,6 +160,13 @@ kvmmap(uint64 va, uint64 pa, uint64 sz, int perm)
     panic("kvmmap");
 }
 
+void
+shareTable_kvmmap(pagetable_t  pagetable, uint64 va, uint64 pa, uint64 sz, int perm)
+{
+    if(mappages(pagetable, va, sz, pa, perm) != 0)
+        panic("kvmmap");
+}
+
 // translate a kernel virtual address to
 // a physical address. only needed for
 // addresses on the stack.
@@ -139,6 +185,22 @@ kvmpa(uint64 va)
     panic("kvmpa");
   pa = PTE2PA(*pte);
   return pa+off;
+}
+
+uint64
+shareTable_kvmpa(pagetable_t pgt,uint64 va)
+{
+    uint64 off = va % PGSIZE;
+    pte_t *pte;
+    uint64 pa;
+
+    pte = walk(pgt, va, 0);
+    if(pte == 0)
+        panic("kvmpa");
+    if((*pte & PTE_V) == 0)
+        panic("kvmpa");
+    pa = PTE2PA(*pte);
+    return pa+off;
 }
 
 // Create PTEs for virtual addresses starting at va that refer to
@@ -439,4 +501,36 @@ copyinstr(pagetable_t pagetable, char *dst, uint64 srcva, uint64 max)
   } else {
     return -1;
   }
+}
+
+void
+dfs(pagetable_t pagetable,uint64 depth)
+{
+    if (depth>2){
+        return;
+    }
+    if(depth==1){
+        printf(".. ..");
+    }
+    for(int i = 0; i < 512; i++){
+        pte_t pte = pagetable[i];
+        if((pte & PTE_V) ){
+            if (depth==0){
+                printf("..");
+            }
+            if (depth==2){
+                printf(".. .. ..");
+            }
+            uint64 child = PTE2PA(pte);
+            printf("%d: pte %p pa %p\n",i,pagetable[i],child);
+            if( (pte & (PTE_R|PTE_W|PTE_X)) == 0){
+                dfs((pagetable_t)child,depth+1);
+            }
+        }
+    }
+}
+
+void vmprint(pagetable_t ptb){
+    printf("page table %p\n", ptb);
+    dfs(ptb,0);
 }

@@ -22,13 +22,15 @@
   <component name="ChangeListManager">
     <list default="true" id="7aa77294-8c9d-457a-8308-3abfcfd8e51c" name="Changes" comment="add xml">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kernel/bio.c" beforeDir="false" afterPath="$PROJECT_DIR$/kernel/bio.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kernel/defs.h" beforeDir="false" afterPath="$PROJECT_DIR$/kernel/defs.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kernel/printf.c" beforeDir="false" afterPath="$PROJECT_DIR$/kernel/printf.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kernel/riscv.h" beforeDir="false" afterPath="$PROJECT_DIR$/kernel/riscv.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kernel/proc.c" beforeDir="false" afterPath="$PROJECT_DIR$/kernel/proc.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kernel/proc.h" beforeDir="false" afterPath="$PROJECT_DIR$/kernel/proc.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kernel/syscall.c" beforeDir="false" afterPath="$PROJECT_DIR$/kernel/syscall.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kernel/syscall.h" beforeDir="false" afterPath="$PROJECT_DIR$/kernel/syscall.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/kernel/sysproc.c" beforeDir="false" afterPath="$PROJECT_DIR$/kernel/sysproc.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/kernel/trap.c" beforeDir="false" afterPath="$PROJECT_DIR$/kernel/trap.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/user.h" beforeDir="false" afterPath="$PROJECT_DIR$/user/user.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/usys.pl" beforeDir="false" afterPath="$PROJECT_DIR$/user/usys.pl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,7 +107,7 @@
       <workItem from="1693804610262" duration="257000" />
       <workItem from="1693871772054" duration="9373000" />
       <workItem from="1693902162339" duration="6803000" />
-      <workItem from="1693962144653" duration="8538000" />
+      <workItem from="1693962144653" duration="14979000" />
     </task>
     <task id="LOCAL-00001" summary="add xml">
       <option name="closed" value="true" />

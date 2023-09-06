@@ -70,7 +70,8 @@ sys_sleep(void)
     sleep(&ticks, &tickslock);
   }
   release(&tickslock);
-  return 0;
+  backtrace();
+    return 0;
 }
 
 uint64

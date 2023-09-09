@@ -1,0 +1,22 @@
+Index: kernel/sysproc.c
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#include \"types.h\"\r\n#include \"riscv.h\"\r\n#include \"defs.h\"\r\n#include \"date.h\"\r\n#include \"param.h\"\r\n#include \"memlayout.h\"\r\n#include \"spinlock.h\"\r\n#include \"proc.h\"\r\n\r\nuint64\r\nsys_exit(void)\r\n{\r\n  int n;\r\n  if(argint(0, &n) < 0)\r\n    return -1;\r\n  exit(n);\r\n  return 0;  // not reached\r\n}\r\n\r\nuint64\r\nsys_getpid(void)\r\n{\r\n  return myproc()->pid;\r\n}\r\n\r\nuint64\r\nsys_fork(void)\r\n{\r\n  return fork();\r\n}\r\n\r\nuint64\r\nsys_wait(void)\r\n{\r\n  uint64 p;\r\n  if(argaddr(0, &p) < 0)\r\n    return -1;\r\n  return wait(p);\r\n}\r\n\r\nuint64\r\nsys_sbrk(void)\r\n{\r\n  int addr;\r\n  int n;\r\n\r\n  if(argint(0, &n) < 0)\r\n    return -1;\r\n  addr = myproc()->sz;\r\n  if(growproc(n) < 0)\r\n    return -1;\r\n  return addr;\r\n}\r\n\r\nuint64\r\nsys_sleep(void)\r\n{\r\n  int n;\r\n  uint ticks0;\r\n\r\n  if(argint(0, &n) < 0)\r\n    return -1;\r\n  acquire(&tickslock);\r\n  ticks0 = ticks;\r\n  while(ticks - ticks0 < n){\r\n    if(myproc()->killed){\r\n      release(&tickslock);\r\n      return -1;\r\n    }\r\n    sleep(&ticks, &tickslock);\r\n  }\r\n  release(&tickslock);\r\n  return 0;\r\n}\r\n\r\nuint64\r\nsys_kill(void)\r\n{\r\n  int pid;\r\n\r\n  if(argint(0, &pid) < 0)\r\n    return -1;\r\n  return kill(pid);\r\n}\r\n\r\n// return how many clock tick interrupts have occurred\r\n// since start.\r\nuint64\r\nsys_uptime(void)\r\n{\r\n  uint xticks;\r\n\r\n  acquire(&tickslock);\r\n  xticks = ticks;\r\n  release(&tickslock);\r\n  return xticks;\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/kernel/sysproc.c b/kernel/sysproc.c
+--- a/kernel/sysproc.c	(revision b34ddc999a5554d62d981971dd35b63c0c311c5c)
++++ b/kernel/sysproc.c	(date 1694231430214)
+@@ -47,8 +47,9 @@
+   if(argint(0, &n) < 0)
+     return -1;
+   addr = myproc()->sz;
+-  if(growproc(n) < 0)
+-    return -1;
++  myproc()->sz=myproc()->sz+n;
++//  if(growproc(n) < 0)
++//    return -1;
+   return addr;
+ }
+ 

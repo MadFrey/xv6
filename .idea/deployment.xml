@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" autoUpload="Always" serverName="Remote Host (fa0e62b4-2a78-4c3f-a48d-55de271acb25)" remoteFilesAllowedToDisappearOnAutoupload="false">
+    <serverData>
+      <paths name="Remote Host (fa0e62b4-2a78-4c3f-a48d-55de271acb25)">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/home/root1/xv6-labs-2020" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+    <option name="myAutoUpload" value="ALWAYS" />
+  </component>
+</project>

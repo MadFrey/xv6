@@ -447,13 +447,16 @@ itrunc(struct inode *ip) {
         for (j = 0; j < NINDIRECT; j++) {
             if(a[j]){
                 bp1 = bread(ip->dev, a[j]);
-                b = (uint *) bp->data;
+                b = (uint *) bp1->data;
                 for (int k = 0; k < NINDIRECT; ++k) {
-                    if (b[k])
+                    if (b[k]){
+                        printf("b[k] %d\n",k);
                         bfree(ip->dev, b[k]);
-                    brelse(bp1);
-                    bfree(ip->dev, a[j]);
+                    }
                 }
+                brelse(bp1);
+                printf("a[j] %d\n",j);
+                bfree(ip->dev, a[j]);
             }
         }
         brelse(bp);

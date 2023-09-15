@@ -291,7 +291,6 @@ sys_open(void)
   struct file *f;
   struct inode *ip;
   int n;
-
   if((n = argstr(0, path, MAXPATH)) < 0 || argint(1, &omode) < 0)
     return -1;
 
@@ -304,16 +303,41 @@ sys_open(void)
       return -1;
     }
   } else {
-    if((ip = namei(path)) == 0){
-      end_op();
-      return -1;
-    }
-    ilock(ip);
-    if(ip->type == T_DIR && omode != O_RDONLY){
-      iunlockput(ip);
-      end_op();
-      return -1;
-    }
+//    if((ip = namei(path)) == 0){
+//      end_op();
+//      return -1;
+//    }
+
+      int symlink_depth = 0;
+      while(1) { // recursively follow symlinks
+          if((ip = namei(path)) == 0){
+              end_op();
+              return -1;
+          }
+          ilock(ip);
+          if(ip->type == T_SYMLINK && (omode & O_NOFOLLOW) == 0) {
+              if(++symlink_depth > 10) {
+                  // too many layer of symlinks, might be a loop
+                  iunlockput(ip);
+                  end_op();
+                  return -1;
+              }
+              if(readi(ip, 0, (uint64)path, 0, MAXPATH) < 0) {
+                  iunlockput(ip);
+                  end_op();
+                  return -1;
+              }
+              iunlockput(ip);
+          } else {
+              break;
+          }
+      }
+
+      if(ip->type == T_DIR && omode != O_RDONLY){
+          iunlockput(ip);
+          end_op();
+          return -1;
+      }
   }
 
   if(ip->type == T_DEVICE && (ip->major < 0 || ip->major >= NDEV)){
@@ -483,4 +507,30 @@ sys_pipe(void)
     return -1;
   }
   return 0;
+}
+
+uint64 sys_symlink(void ){
+    struct inode *ip;
+    char target[MAXPATH], path[MAXPATH];
+    if(argstr(0, target, MAXPATH) < 0 || argstr(1, path, MAXPATH) < 0)
+        return -1;
+
+    begin_op();
+
+    ip = create(path, T_SYMLINK, 0, 0);    //创建一个新的inode对象
+    if(ip == 0){
+        end_op();
+        return -1;
+    }
+
+    // use the first data block to store target path.
+    if(writei(ip, 0, (uint64)target, 0, strlen(target)) < 0) {   //将target写入inode 的data中即可
+        end_op();
+        return -1;
+    }
+
+    iunlockput(ip);
+
+    end_op();
+    return 0;
 }

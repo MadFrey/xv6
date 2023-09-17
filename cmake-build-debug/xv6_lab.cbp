@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="xv6_lab"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/root1/xv6-labs-2020/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j2 -f &quot;/home/root1/xv6-labs-2020/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/root1/xv6-labs-2020/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j2 -f &quot;/home/root1/xv6-labs-2020/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j2 -f &quot;/home/root1/xv6-labs-2020/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="xv6_lab">
+				<Option output="/home/root1/xv6-labs-2020/cmake-build-debug/xv6_lab" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/root1/xv6-labs-2020/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/root1/xv6-labs-2020/kernel"/>
+					<Add directory="/home/root1/xv6-labs-2020/user"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j2 -f &quot;/home/root1/xv6-labs-2020/cmake-build-debug/Makefile&quot;  VERBOSE=1 xv6_lab"/>
+					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/root1/xv6-labs-2020/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j2 -f &quot;/home/root1/xv6-labs-2020/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j2 -f &quot;/home/root1/xv6-labs-2020/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="xv6_lab/fast">
+				<Option output="/home/root1/xv6-labs-2020/cmake-build-debug/xv6_lab" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/root1/xv6-labs-2020/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/root1/xv6-labs-2020/kernel"/>
+					<Add directory="/home/root1/xv6-labs-2020/user"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j2 -f &quot;/home/root1/xv6-labs-2020/cmake-build-debug/Makefile&quot;  VERBOSE=1 xv6_lab/fast"/>
+					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/root1/xv6-labs-2020/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j2 -f &quot;/home/root1/xv6-labs-2020/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j2 -f &quot;/home/root1/xv6-labs-2020/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/root1/xv6-labs-2020/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j2 -f &quot;/home/root1/xv6-labs-2020/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/root1/xv6-labs-2020/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j2 -f &quot;/home/root1/xv6-labs-2020/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j2 -f &quot;/home/root1/xv6-labs-2020/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/root1/xv6-labs-2020/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j2 -f &quot;/home/root1/xv6-labs-2020/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/root1/xv6-labs-2020/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j2 -f &quot;/home/root1/xv6-labs-2020/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j2 -f &quot;/home/root1/xv6-labs-2020/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/root1/xv6-labs-2020/kernel/bio.c">
+			<Option target="xv6_lab"/>
+		</Unit>
+		<Unit filename="/home/root1/xv6-labs-2020/kernel/buf.h">
+			<Option target="xv6_lab"/>
+		</Unit>
+		<Unit filename="/home/root1/xv6-labs-2020/kernel/console.c">
+			<Option target="xv6_lab"/>
+		</Unit>
+		<Unit filename="/home/root1/xv6-labs-2020/kernel/date.h">
+			<Option target="xv6_lab"/>
+		</Unit>
+		<Unit filename="/home/root1/xv6-labs-2020/kernel/defs.h">
+			<Option target="xv6_lab"/>
+		</Unit>
+		<Unit filename="/home/root1/xv6-labs-2020/kernel/elf.h">
+			<Option target="xv6_lab"/>
+		</Unit>
+		<Unit filename="/home/root1/xv6-labs-2020/kernel/exec.c">
+			<Option target="xv6_lab"/>
+		</Unit>
+		<Unit filename="/home/root1/xv6-labs-2020/kernel/fcntl.h">
+			<Option target="xv6_lab"/>
+		</Unit>
+		<Unit filename="/home/root1/xv6-labs-2020/kernel/file.c">
+			<Option target="xv6_lab"/>
+		</Unit>
+		<Unit filename="/home/root1/xv6-labs-2020/kernel/file.h">
+			<Option target="xv6_lab"/>
+		</Unit>
+		<Unit filename="/home/root1/xv6-labs-2020/kernel/fs.c">
+			<Option target="xv6_lab"/>
+		</Unit>
+		<Unit filename="/home/root1/xv6-labs-2020/kernel/fs.h">
+			<Option target="xv6_lab"/>
+		</Unit>
+		<Unit filename="/home/root1/xv6-labs-2020/kernel/kalloc.c">
+			<Option target="xv6_lab"/>
+		</Unit>
+		<Unit filename="/home/root1/xv6-labs-2020/kernel/log.c">
+			<Option target="xv6_lab"/>
+		</Unit>
+		<Unit filename="/home/root1/xv6-labs-2020/kernel/main.c">
+			<Option target="xv6_lab"/>
+		</Unit>
+		<Unit filename="/home/root1/xv6-labs-2020/kernel/memlayout.h">
+			<Option target="xv6_lab"/>
+		</Unit>
+		<Unit filename="/home/root1/xv6-labs-2020/kernel/param.h">
+			<Option target="xv6_lab"/>
+		</Unit>
+		<Unit filename="/home/root1/xv6-labs-2020/kernel/pipe.c">
+			<Option target="xv6_lab"/>
+		</Unit>
+		<Unit filename="/home/root1/xv6-labs-2020/kernel/plic.c">
+			<Option target="xv6_lab"/>
+		</Unit>
+		<Unit filename="/home/root1/xv6-labs-2020/kernel/printf.c">
+			<Option target="xv6_lab"/>
+		</Unit>
+		<Unit filename="/home/root1/xv6-labs-2020/kernel/proc.c">
+			<Option target="xv6_lab"/>
+		</Unit>
+		<Unit filename="/home/root1/xv6-labs-2020/kernel/proc.h">
+			<Option target="xv6_lab"/>
+		</Unit>
+		<Unit filename="/home/root1/xv6-labs-2020/kernel/ramdisk.c">
+			<Option target="xv6_lab"/>
+		</Unit>
+		<Unit filename="/home/root1/xv6-labs-2020/kernel/riscv.h">
+			<Option target="xv6_lab"/>
+		</Unit>
+		<Unit filename="/home/root1/xv6-labs-2020/kernel/sleeplock.c">
+			<Option target="xv6_lab"/>
+		</Unit>
+		<Unit filename="/home/root1/xv6-labs-2020/kernel/sleeplock.h">
+			<Option target="xv6_lab"/>
+		</Unit>
+		<Unit filename="/home/root1/xv6-labs-2020/kernel/spinlock.c">
+			<Option target="xv6_lab"/>
+		</Unit>
+		<Unit filename="/home/root1/xv6-labs-2020/kernel/spinlock.h">
+			<Option target="xv6_lab"/>
+		</Unit>
+		<Unit filename="/home/root1/xv6-labs-2020/kernel/sprintf.c">
+			<Option target="xv6_lab"/>
+		</Unit>
+		<Unit filename="/home/root1/xv6-labs-2020/kernel/start.c">
+			<Option target="xv6_lab"/>
+		</Unit>
+		<Unit filename="/home/root1/xv6-labs-2020/kernel/stat.h">
+			<Option target="xv6_lab"/>
+		</Unit>
+		<Unit filename="/home/root1/xv6-labs-2020/kernel/stats.c">
+			<Option target="xv6_lab"/>
+		</Unit>
+		<Unit filename="/home/root1/xv6-labs-2020/kernel/string.c">
+			<Option target="xv6_lab"/>
+		</Unit>
+		<Unit filename="/home/root1/xv6-labs-2020/kernel/syscall.c">
+			<Option target="xv6_lab"/>
+		</Unit>
+		<Unit filename="/home/root1/xv6-labs-2020/kernel/syscall.h">
+			<Option target="xv6_lab"/>
+		</Unit>
+		<Unit filename="/home/root1/xv6-labs-2020/kernel/sysfile.c">
+			<Option target="xv6_lab"/>
+		</Unit>
+		<Unit filename="/home/root1/xv6-labs-2020/kernel/sysproc.c">
+			<Option target="xv6_lab"/>
+		</Unit>
+		<Unit filename="/home/root1/xv6-labs-2020/kernel/trap.c">
+			<Option target="xv6_lab"/>
+		</Unit>
+		<Unit filename="/home/root1/xv6-labs-2020/kernel/types.h">
+			<Option target="xv6_lab"/>
+		</Unit>
+		<Unit filename="/home/root1/xv6-labs-2020/kernel/uart.c">
+			<Option target="xv6_lab"/>
+		</Unit>
+		<Unit filename="/home/root1/xv6-labs-2020/kernel/virtio.h">
+			<Option target="xv6_lab"/>
+		</Unit>
+		<Unit filename="/home/root1/xv6-labs-2020/kernel/virtio_disk.c">
+			<Option target="xv6_lab"/>
+		</Unit>
+		<Unit filename="/home/root1/xv6-labs-2020/kernel/vm.c">
+			<Option target="xv6_lab"/>
+		</Unit>
+		<Unit filename="/home/root1/xv6-labs-2020/kernel/vmcopyin.c">
+			<Option target="xv6_lab"/>
+		</Unit>
+		<Unit filename="/home/root1/xv6-labs-2020/mkfs/mkfs.c">
+			<Option target="xv6_lab"/>
+		</Unit>
+		<Unit filename="/home/root1/xv6-labs-2020/user/cat.c">
+			<Option target="xv6_lab"/>
+		</Unit>
+		<Unit filename="/home/root1/xv6-labs-2020/user/echo.c">
+			<Option target="xv6_lab"/>
+		</Unit>
+		<Unit filename="/home/root1/xv6-labs-2020/user/forktest.c">
+			<Option target="xv6_lab"/>
+		</Unit>
+		<Unit filename="/home/root1/xv6-labs-2020/user/grep.c">
+			<Option target="xv6_lab"/>
+		</Unit>
+		<Unit filename="/home/root1/xv6-labs-2020/user/grind.c">
+			<Option target="xv6_lab"/>
+		</Unit>
+		<Unit filename="/home/root1/xv6-labs-2020/user/init.c">
+			<Option target="xv6_lab"/>
+		</Unit>
+		<Unit filename="/home/root1/xv6-labs-2020/user/kill.c">
+			<Option target="xv6_lab"/>
+		</Unit>
+		<Unit filename="/home/root1/xv6-labs-2020/user/ln.c">
+			<Option target="xv6_lab"/>
+		</Unit>
+		<Unit filename="/home/root1/xv6-labs-2020/user/ls.c">
+			<Option target="xv6_lab"/>
+		</Unit>
+		<Unit filename="/home/root1/xv6-labs-2020/user/mkdir.c">
+			<Option target="xv6_lab"/>
+		</Unit>
+		<Unit filename="/home/root1/xv6-labs-2020/user/printf.c">
+			<Option target="xv6_lab"/>
+		</Unit>
+		<Unit filename="/home/root1/xv6-labs-2020/user/rm.c">
+			<Option target="xv6_lab"/>
+		</Unit>
+		<Unit filename="/home/root1/xv6-labs-2020/user/sh.c">
+			<Option target="xv6_lab"/>
+		</Unit>
+		<Unit filename="/home/root1/xv6-labs-2020/user/statistics.c">
+			<Option target="xv6_lab"/>
+		</Unit>
+		<Unit filename="/home/root1/xv6-labs-2020/user/stats.c">
+			<Option target="xv6_lab"/>
+		</Unit>
+		<Unit filename="/home/root1/xv6-labs-2020/user/stressfs.c">
+			<Option target="xv6_lab"/>
+		</Unit>
+		<Unit filename="/home/root1/xv6-labs-2020/user/ulib.c">
+			<Option target="xv6_lab"/>
+		</Unit>
+		<Unit filename="/home/root1/xv6-labs-2020/user/umalloc.c">
+			<Option target="xv6_lab"/>
+		</Unit>
+		<Unit filename="/home/root1/xv6-labs-2020/user/user.h">
+			<Option target="xv6_lab"/>
+		</Unit>
+		<Unit filename="/home/root1/xv6-labs-2020/user/usertests.c">
+			<Option target="xv6_lab"/>
+		</Unit>
+		<Unit filename="/home/root1/xv6-labs-2020/user/wc.c">
+			<Option target="xv6_lab"/>
+		</Unit>
+		<Unit filename="/home/root1/xv6-labs-2020/user/zombie.c">
+			<Option target="xv6_lab"/>
+		</Unit>
+		<Unit filename="/home/root1/xv6-labs-2020/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

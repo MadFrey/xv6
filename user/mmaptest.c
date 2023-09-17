@@ -226,7 +226,6 @@ mmap_test(void)
     err("mmap mmap2");
   close(fd2);
   unlink("mmap2");
-
   if(memcmp(p1, "12345", 5) != 0)
     err("mmap1 mismatch");
   if(memcmp(p2, "67890", 5) != 0)

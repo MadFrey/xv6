@@ -3,6 +3,7 @@
 #include "memlayout.h"
 #include "riscv.h"
 #include "spinlock.h"
+#include "fcntl.h"
 #include "proc.h"
 #include "defs.h"
 
@@ -145,6 +146,7 @@ freeproc(struct proc *p)
 {
   if(p->trapframe)
     kfree((void*)p->trapframe);
+
   p->trapframe = 0;
   if(p->pagetable)
     proc_freepagetable(p->pagetable, p->sz);
@@ -296,6 +298,15 @@ fork(void)
       np->ofile[i] = filedup(p->ofile[i]);
   np->cwd = idup(p->cwd);
 
+    for(i = 0; i < VMASIZE; i++) {
+        struct vma *v = &p->vmas[i];
+        if(v->valid) {
+            np->vmas[i] = *v;
+            filedup(v->f);
+        }
+    }
+
+
   safestrcpy(np->name, p->name, sizeof(p->name));
 
   pid = np->pid;
@@ -333,6 +344,8 @@ reparent(struct proc *p)
   }
 }
 
+
+
 // Exit the current process.  Does not return.
 // An exited process remains in the zombie state
 // until its parent calls wait().
@@ -352,6 +365,20 @@ exit(int status)
       p->ofile[fd] = 0;
     }
   }
+    for(int i = 0; i < VMASIZE; i ++)
+    {
+        if(p->vmas[i].valid == 1)
+        {
+            uint64 sz = p->vmas[i].sz;
+            fileclose(p->vmas[i].f);
+            // 取消映射
+            uvmunmap(p->pagetable, p->vmas[i].vastart, PGROUNDUP(sz) / PGSIZE, 1);
+            // 清空vma
+            memset((void*)&p->vmas[i], 0, sizeof(p->vmas[i]));
+
+        }
+    }
+
 
   begin_op();
   iput(p->cwd);

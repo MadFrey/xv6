@@ -3,8 +3,12 @@
 #include "memlayout.h"
 #include "riscv.h"
 #include "spinlock.h"
+#include "sleeplock.h"
+#include "fs.h"
+#include "file.h"
 #include "proc.h"
 #include "defs.h"
+#include "fcntl.h"
 
 struct spinlock tickslock;
 uint ticks;
@@ -68,9 +72,47 @@ usertrap(void)
   } else if((which_dev = devintr()) != 0){
     // ok
   } else {
-    printf("usertrap(): unexpected scause %p pid=%d\n", r_scause(), p->pid);
-    printf("            sepc=%p stval=%p\n", r_sepc(), r_stval());
-    p->killed = 1;
+      if  (r_scause()==13||r_scause()==15){
+          uint64 va = r_stval();
+          struct vma* v = 0;
+          for (int i = 0; i < VMASIZE; ++i) {
+              if(p->vmas[i].valid == 1 && va >= p->vmas[i].vastart && va < p->vmas[i].vastart + p->vmas[i].sz) {
+                 v=&p->vmas[i];
+              }
+          }
+
+          if(v==0){
+              p->killed=1;
+          }else{
+              void *pa = kalloc();
+              if(pa == 0) {
+                  panic("vmalazytouch: kalloc");
+              }
+              memset(pa, 0, PGSIZE);
+              begin_op();
+              ilock(v->f->ip);
+              readi(v->f->ip, 0, (uint64)pa, v->offset + PGROUNDDOWN(va - v->vastart), PGSIZE);
+              iunlock(v->f->ip);
+              end_op();
+
+              int perm = PTE_U;
+              if(v->prot & PROT_READ)
+                  perm |= PTE_R;
+              if(v->prot & PROT_WRITE)
+                  perm |= PTE_W;
+              if(v->prot & PROT_EXEC)
+                  perm |= PTE_X;
+
+              if(mappages(p->pagetable, va, PGSIZE, (uint64)pa, perm) < 0) {
+                  panic("vmalazytouch: mappages");
+              }
+
+          }
+      }else{
+          printf("usertrap(): unexpected scause %p pid=%d\n", r_scause(), p->pid);
+          printf("            sepc=%p stval=%p\n", r_sepc(), r_stval());
+          p->killed = 1;
+      }
   }
 
   if(p->killed)
